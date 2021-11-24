@@ -15,6 +15,7 @@ export class Animation extends Node {
     }
 
     animCorrCard(obj){
-        this.tl.to(obj, {scale: 1.2, opacity: 0.9})
+        obj.style.zIndex = '1'
+        this.tl.to(obj, {scale: 1.2})
     }
 }
