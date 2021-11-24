@@ -1,8 +1,8 @@
-import { Node } from "./Node.js";
-import { Sprite } from "./Sprite.js";
-import {Card} from "./Card.js"
-import { Label } from "./Label.js";
-import { Animation } from "./Animation.js";
+import { Node } from "../Libs/Node.js";
+import { Sprite } from "../Libs/Sprite.js";
+import {Card} from "../Libs/Card.js"
+import { Label } from "../Libs/Label.js";
+import { Animation } from "../Libs/Animation.js";
 const cardWid = 150;
 const cardHei = 200;
 let countClick = 0;
@@ -24,11 +24,11 @@ export class MainGame extends Node{
     _initElement(){
         this.elm = document.createElement('div');
         this.elm.style.position = "absolute";
-        this._scoreLabel = new Label("SCORE:", null, 70)
+        this._scoreLabel = new Label("SCORE:", "white", 70)
         this.elm.appendChild(this._scoreLabel.elm);
         this._scoreLabel.posX = 215;
         this._scoreLabel.posY = 90;
-        this.currScore = new Label("100", null, 70)
+        this.currScore = new Label("100", "white", 70)
         this.elm.appendChild(this.currScore.elm);
         this.currScore.posX = 470;
         this.currScore.posY = 90;
@@ -90,17 +90,17 @@ export class MainGame extends Node{
         }
         countClick++;
         chooseCard.push(card)
-        card.flipUp();
-        if(chooseCard.length === 1) {
-            setTimeout(()=>{
-                // this.elm.removeChild(chooseCard[0])
-                if(chooseCard.length != 1) return;
-                chooseCard[0].flipDown();
-                chooseCard = []
-                countClick = 0;
+        card.flipOpen();
+        // if(chooseCard.length === 1) {
+        //     setTimeout(()=>{
+        //         // this.elm.removeChild(chooseCard[0])
+        //         if(chooseCard.length != 1) return;
+        //         chooseCard[0].flipDown();
+        //         chooseCard = []
+        //         countClick = 0;
 
-            }, 2000)
-        }
+        //     }, 2000)
+        // }
         if (chooseCard.length === 2){
             this.checkCard()
         }
@@ -109,6 +109,8 @@ export class MainGame extends Node{
 
     checkCard(){
         if(chooseCard[0].childNodes[0].src === chooseCard[1].childNodes[0].src){
+            chooseCard[0].corrCard();
+            chooseCard[1].corrCard();
             setTimeout(()=>{
                 this.elm.removeChild(chooseCard[0])
                 this.elm.removeChild(chooseCard[1])

@@ -1,9 +1,9 @@
-import {MainGame} from "./Libs/Game.js"
+import {MainGame} from "./Modules/Game.js"
 import { Sprite } from "./Libs/Sprite.js";
 const mainGame = new MainGame();
-const bg = new Sprite("./img/bg.jpg")
+const bg = new Sprite("./img/bg.gif")
 document.body.appendChild(bg.elm)
-bg.width = 2090;
-bg.height = 1080;
+bg.width = 1890;
+bg.height = 1040;
 
 document.body.appendChild(mainGame.elm)

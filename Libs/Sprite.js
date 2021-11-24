@@ -6,10 +6,10 @@ export class Sprite extends Node {
         this.imgSrc(path)
         // this._img = path;
     }
-    
+
     _initElement(){
         this.elm = document.createElement('img');
-        this.elm.style.position = "absolute";
+        this.elm.style.position = "absolute"
 
     }
 

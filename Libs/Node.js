@@ -56,8 +56,5 @@ export class Node{
     on(event, listener){
         this.elm.addEventListener(event, listener);
     }
-
-    hoverCard(event, listener){
-        this.elm.addEventListener(event, listener);
-    }
+    
 }
