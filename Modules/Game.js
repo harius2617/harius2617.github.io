@@ -16,12 +16,8 @@ export class MainGame extends Node{
         this._createCards();
         this._clickCard = this._clickCard.bind(this)
         this.on('mousedown', this._clickCard);
-        this._createReplayBtn()
-        this._createReplayBtn = this._createReplayBtn.bind(this.elm)
-        this.on("onclick", this._createReplayBtn)
-        // this.replayGame();
-        // this._hoverCard = this._hoverCard.bind(this)
-        // this.hoverCard('mouseEnter', this._hoverCard)
+        this._createReplayBtn();
+        this._createRetryBtn();
         this.scoreStart = 100;
         this.checkAmountCard = 20;
     }
@@ -39,21 +35,25 @@ export class MainGame extends Node{
         this.currScore.posX = 370;
         this.currScore.posY = 50;
         // this.currScore.active = true;
+    }
+
+    _createRetryBtn() {
         this.btnRetry = new Button("Retry")
         this.elm.appendChild(this.btnRetry.elm)
         this.btnRetry.posY = 780;
         this.btnRetry.posX = 100;
         this.btnRetry.startText.posX = 30;
     }
+
     _createReplayBtn(){
-        this.btnReplay = new Button("Replay", this.replayGame())
-        this.elm.appendChild(this.btnReplay.elm)
-        this.btnReplay.posY = 780;
-        this.btnReplay.posX = 400;
-        // this.btnReplay.onClick = this.replayGame()
-        // this.replayGame()
-        // console.warn(this.btnStart.onclick)
+        let btnReplay = new Button("Replay")
+        this.elm.appendChild(btnReplay.elm)
+        btnReplay.posY = 780;
+        btnReplay.posX = 400;
+        let _onClick = this.replayGame;
+        btnReplay.elm.onclick = _onClick
     }
+    
 
 
 
@@ -67,22 +67,24 @@ export class MainGame extends Node{
     }
 
     _createCards(){
-        // let tl = new Animation();
+        let tl = new Animation();
         const col = 5;
         const row = 4;
         let index = 0;
         const startPosX = 0;
         const startPosY = 0;
+        let centerX = 300;
+        let centerY = 350;
         for(let i=1; i <= row; i++){
             for(let j = 1; j <= col; j ++){
-                const card = new Card(this._srcImgs[index], index + 1)
+                const card = new Card(this._srcImgs[index], index + 1) 
                 this.elm.appendChild(card.elm);
-                // tl._mouseEnter(card)
                 card.width = cardWid;
                 card.height = cardHei;
                 card.posY = i * card.height + startPosY;
                 card.posX = j * card.width + startPosX;
                 index++
+                card.active = false
             }
         }
     }
@@ -98,7 +100,7 @@ export class MainGame extends Node{
         if(this.scoreStart == 0) {
             setTimeout(() => {
                 alert(`You LOSE!!!`)
-                
+                window.location.reload()
             },300)
         }
     }
@@ -155,10 +157,10 @@ export class MainGame extends Node{
                 countClick = 0;
             }, 500)
 
-        }
+        }   
     }
     replayGame(){
-        console.warn(1)
+        window.location.reload()
     }
 
 }

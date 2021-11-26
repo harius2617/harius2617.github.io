@@ -2,14 +2,10 @@ import { Node } from "./Node.js";
 import { Label } from "./Label.js"
 
 export class Button extends Node {
-    constructor(text, funct){
+    constructor(text){
         super();
         this._text = text;
         this._createBtn();
-        // this._createBtn.onclick() = funct 
-        this.funct = funct
-        // console.warn(typeof this.funct)
-
     }
 
     _initElement(){
@@ -22,7 +18,6 @@ export class Button extends Node {
         this.elm.style.width = "190px";
         this.elm.style.height = "80px";
         this.elm._createBtn = this._createBtn.bind(this.elm)
-        this.elm._createBtn.onclick = this.funct
     }
 
     _createBtn(){
