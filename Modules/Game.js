@@ -61,8 +61,8 @@ export class MainGame extends Node{
 
             this.btnPlay = new Button("Play", this.resetGame)
             this.elm.appendChild(this.btnPlay.elm)
-            this.btnPlay.posY = 780;
-            this.btnPlay.posX = 700;
+            this.btnPlay.posY = 150;
+            this.btnPlay.posX = 100;
     }
 
     _initElement(){
