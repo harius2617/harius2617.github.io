@@ -18,8 +18,6 @@ export class Card extends Node{
         this.active = true;
     }
 
-
-
     _initElement(){
         this.elm = document.createElement('div');
         this.elm.style.position = "absolute"
@@ -27,7 +25,7 @@ export class Card extends Node{
         this.elm.flipDown = this.flipDown.bind(this)
         this.elm.corrCard = this.corrCard.bind(this)
         this.elm.typeElm = 'Card';
-
+        console.log(this.elm.style)
     }
 
     get path(){
@@ -43,7 +41,6 @@ export class Card extends Node{
         this._img.active = false;
         this._img.height = 150; 
         this._img.width = 100;
-
     }
 
     _createcover (){

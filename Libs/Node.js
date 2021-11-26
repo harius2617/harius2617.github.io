@@ -56,5 +56,10 @@ export class Node{
     on(event, listener){
         this.elm.addEventListener(event, listener);
     }
+
+    destroy(){
+        if(!this.elm.parentNode) return;
+        this.elm.parentNode.removeChild(this.elm)
+    }
     
 }

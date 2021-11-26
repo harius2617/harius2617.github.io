@@ -2,9 +2,10 @@ import { Node } from "./Node.js";
 import { Label } from "./Label.js"
 
 export class Button extends Node {
-    constructor(text){
+    constructor(text, listener){
         super();
         this._text = text;
+        this._listener = listener;
         this._createBtn();
     }
 
@@ -17,7 +18,6 @@ export class Button extends Node {
         this.elm.style.boxShadow = "5px 5px 7px #999"
         this.elm.style.width = "190px";
         this.elm.style.height = "80px";
-        this.elm._createBtn = this._createBtn.bind(this.elm)
     }
 
     _createBtn(){
@@ -25,6 +25,7 @@ export class Button extends Node {
         this.elm.appendChild(this.startText.elm)
         this.startText.posX = 17;
         this.startText.posY = 6;
+        this.elm.onclick = this._listener;
     }
 
 
