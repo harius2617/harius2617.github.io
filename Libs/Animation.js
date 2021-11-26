@@ -18,4 +18,4 @@ export class Animation extends Node {
         obj.style.zIndex = '1'
         this.tl.to(obj, {scale: 1.2})
     }
-}
+} 

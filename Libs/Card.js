@@ -41,8 +41,8 @@ export class Card extends Node{
         this._img = new Sprite(this._path)
         this.elm.appendChild(this._img.elm)
         this._img.active = false;
-        this._img.height = 200; 
-        this._img.width = 150;
+        this._img.height = 150; 
+        this._img.width = 100;
 
     }
 
@@ -50,16 +50,16 @@ export class Card extends Node{
         this._cover = new Sprite("./img/cover.jpg")
         this.elm.appendChild(this._cover.elm)
         this._cover.active = true; 
-        this._cover.height = 200;
-        this._cover.width = 150;
+        this._cover.height = 150;
+        this._cover.width = 100;
     }
 
     _createLabel(){
-        this._label = new Label(this._text,null, 50);
+        this._label = new Label(this._text,null, 40);
         this.elm.appendChild(this._label.elm)
         this._label.active = true; 
-        this._label.posX = 55;
-        this._label.posY = 60;
+        this._label.posX = 30;
+        this._label.posY = 55;
     }
 
     flipOpen(){
