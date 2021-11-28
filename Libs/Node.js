@@ -18,15 +18,15 @@ export class Node{
     }
     set width(value){
         this._width = value
-        this.elm.style.width = this._width + "px";
+        this.elm.style.width = typeof value === "string" ? this._width :this._width + "px";
     }
 
     get height(){
         return this._height;
     }
     set height(value){
-        this._height = value
-        this.elm.style.height = this._height + "px";
+        this._height = value;
+        this.elm.style.height = typeof value === "string" ? this._height :this._height + "px";
     }
 
     get posX(){

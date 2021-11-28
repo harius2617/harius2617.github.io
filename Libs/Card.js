@@ -20,12 +20,12 @@ export class Card extends Node{
 
     _initElement(){
         this.elm = document.createElement('div');
-        this.elm.style.position = "absolute"
-        this.elm.flipOpen = this.flipOpen.bind(this)
-        this.elm.flipDown = this.flipDown.bind(this)
-        this.elm.corrCard = this.corrCard.bind(this)
+        this.elm.style.position = "absolute";
+        this.elm.flipOpen = this.flipOpen.bind(this);
+        this.elm.flipDown = this.flipDown.bind(this);
+        this.elm.corrCard = this.corrCard.bind(this);
+        this.setPosition = this.setPosition.bind(this);
         this.elm.typeElm = 'Card';
-        console.log(this.elm.style)
     }
 
     get path(){
@@ -39,24 +39,30 @@ export class Card extends Node{
         this._img = new Sprite(this._path)
         this.elm.appendChild(this._img.elm)
         this._img.active = false;
-        this._img.height = 150; 
-        this._img.width = 100;
+       
     }
 
     _createcover (){
         this._cover = new Sprite("./img/cover.jpg")
         this.elm.appendChild(this._cover.elm)
         this._cover.active = true; 
-        this._cover.height = 150;
-        this._cover.width = 100;
     }
 
     _createLabel(){
         this._label = new Label(this._text,null, 40);
         this.elm.appendChild(this._label.elm)
         this._label.active = true; 
-        this._label.posX = 30;
-        this._label.posY = 55;
+    }
+
+    _setupCard(wid, hei){
+        this._img.height = this._img.elm.parentNode.style.height; 
+        this._img.width = this._img.elm.parentNode.style.width;
+
+        this._cover.height = this._cover.elm.parentNode.style.height;
+        this._cover.width = this._cover.elm.parentNode.style.width;
+
+        this._label.posX = wid/2 - 20;
+        this._label.posY = hei/2 - 22;
     }
 
     flipOpen(){
@@ -71,17 +77,22 @@ export class Card extends Node{
     }
     flipDown(){
         let tl = new Animation();
-        tl.animationDown(this.elm)
+        tl.animationDown(this.elm);
         // tl.tl.add(function(){
             this._cover.active = true;
             this._label.active =true;
             this._img.active = false;
         // })
-        tl.animationUp(this.elm)
+        tl.animationUp(this.elm);
     }
 
     corrCard(){
         let tl = new Animation()
         tl.animCorrCard(this.elm)
+    }
+
+    setPosition(x, y) {
+        this.posX = x;
+        this.posY = y;
     }
 }

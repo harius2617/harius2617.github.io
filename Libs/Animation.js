@@ -4,6 +4,7 @@ export class Animation extends Node {
     constructor(){
         super();
         this.tl = gsap.timeline();
+        this.obj;
     }
 
     animationUp(obj){
@@ -15,7 +16,8 @@ export class Animation extends Node {
     }
 
     animCorrCard(obj){
-        obj.style.zIndex = '1'
-        this.tl.to(obj, {scale: 1.2})
+        obj.style.zIndex = 3;
+        this.tl.to(obj, {scale: 1.2, duration:0.5})
+
     }
 } 
