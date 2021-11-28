@@ -4,6 +4,7 @@ import { Card } from "../Libs/Card.js"
 import { Label } from "../Libs/Label.js";
 import { Animation } from "../Libs/Animation.js";
 import { Button } from "../Libs/Button.js";
+import { Audio } from "../Libs/Audio.js";
 
 const cardWid = 100;
 const cardHei = 150;
@@ -16,18 +17,37 @@ export class MainGame extends Node {
         this._arrCards = [];
         this._init();
         this._initBtn();
+        this.clickSound;
+        this._createAu()
     }
-
+    
+    
     _init() {
         this.clickCard = this._clickCard.bind(this)
         this.resetGame = this._resetGame.bind(this)
         this.retryGame = this._retryGame.bind(this)
         this.on('mousedown', this.clickCard);
     }
+    
+    _createAu(){
+        this.clickSound = new Audio("../audio/click-sound.mp3");
+        this.elm.appendChild(this.clickSound.elm);
+        
+        this.corrSound = new Audio("../audio/correct-sound.mp3");
+        this.elm.appendChild(this.corrSound.elm);
+
+        this.winSound = new Audio("../audio/clapping-sound.mp3");
+        this.elm.appendChild(this.corrSound.elm);
+
+        this.startSound = new Audio("../audio/shuffling.mp3");
+        this.elm.appendChild(this.startSound.elm)
+        
+    }
 
     _resetGame(isReset = true) {
         isReset ? this._createImgSrc() : null;
         this._delCard();
+        this.startSound.elm.play()
         this._createCards();
         this.scoreStart = 100;
         this.calculatorScore();
@@ -87,7 +107,7 @@ export class MainGame extends Node {
             const src = "./img/onepiece" + i + ".png";
             this._srcImgs.push(src, src)
         }
-        this._srcImgs.sort(() => Math.random() - 0.5)
+        // this._srcImgs.sort(() => Math.random() - 0.5)
     }
 
     _createCards() {
@@ -111,11 +131,11 @@ export class MainGame extends Node {
                 card.setPosition(centerX, centerY);
                 card._setupCard(cardWid, cardHei);
                 let tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
-                tl.delay(0.1 * index)
+                tl.delay(0.2 * index)
                     .add(() => card.elm.style.zIndex = 2)
                     .to(card, {
                         duration: 1,
-                        ease: "back.out(5)",
+                        ease: "back.out(4)",
                         posX: j * card.width + startPosX,
                         posY: i * card.height + startPosY,
                     })
@@ -128,6 +148,7 @@ export class MainGame extends Node {
         this.currScore.text = this.scoreStart.toString()
         if (this.checkAmountCard == 0) {
             setTimeout(() => {
+                this.winSound.elm.play()
                 alert(`Congratulation!!! \nYour score ${this.scoreStart}`)
 
             }, 300)
@@ -152,6 +173,8 @@ export class MainGame extends Node {
         if (chooseCard.length == 1 && chooseCard[0].childNodes[0].x == card.childNodes[0].x) {
             return;
         }
+        this.clickSound.elm.load()
+        this.clickSound.elm.play()
         countClick++;
         chooseCard.push(card)
         card.flipOpen();
@@ -173,6 +196,7 @@ export class MainGame extends Node {
 
     checkCard() {
         if (chooseCard[0].childNodes[0].src === chooseCard[1].childNodes[0].src) {
+            this.corrSound.elm.play()
             chooseCard[0].corrCard();
             chooseCard[1].corrCard();
             setTimeout(() => {
