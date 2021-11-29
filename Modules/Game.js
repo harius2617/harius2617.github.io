@@ -32,19 +32,19 @@ export class MainGame extends Node {
         this.themeSound = new Audio("../audio/shanks-stop-the-war-theme.mp3");
         this.elm.appendChild(this.themeSound.elm);
 
-        this.clickSound = new Audio("../audio/click-sound.mp3");
+        this.clickSound = new Audio("../audio/pew_pew.mp3");
         this.elm.appendChild(this.clickSound.elm);
         
         this.corrSound = new Audio("../audio/correct-sound.mp3");
         this.elm.appendChild(this.corrSound.elm);
 
-        this.winSound = new Audio("../audio/clapping-sound.mp3");
+        this.winSound = new Audio("../audio/congratulation.mp3");
         this.elm.appendChild(this.corrSound.elm);
 
         this.startSound = new Audio("../audio/shuffling.mp3");
         this.elm.appendChild(this.startSound.elm);
         
-        this.loserSound = new Audio("../audio/sound-loser.mp3");
+        this.loserSound = new Audio("../audio/nooo.mp3");
         this.elm.appendChild(this.loserSound.elm);
     }
 
@@ -126,7 +126,7 @@ export class MainGame extends Node {
             const src = "./img/onepiece" + i + ".png";
             this._srcImgs.push(src, src);
         }
-        // this._srcImgs.sort(() => Math.random() - 0.5)
+        this._srcImgs.sort(() => Math.random() - 0.5)
     }
 
     _createCards() {
@@ -139,6 +139,7 @@ export class MainGame extends Node {
         let centerY = startPosY + cardHei * 1.5;
         for (let i = 0; i < row; i++) {
             for (let j = 0; j < col; j++) {
+                countClick = 2;
                 let card = new Card(this._srcImgs[index], index + 1);
                 this.elm.appendChild(card.elm);
                 this._arrCards.push(card);
@@ -159,6 +160,7 @@ export class MainGame extends Node {
                 index++;
             }
         }
+        countClick = 0
     }
 
     calculatorScore() {
