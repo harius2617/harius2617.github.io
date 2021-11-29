@@ -8,7 +8,11 @@ export class Audio extends Node {
     }
 
     _initElement(){
+<<<<<<< HEAD
         this.elm = document.createElement("AUDIO");
+=======
+        this.elm = document.createElement("AUDIO")
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
     }
 
     get path(){

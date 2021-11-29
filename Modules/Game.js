@@ -18,14 +18,24 @@ export class MainGame extends Node {
         this._init();
         this._initBtn();
         this.clickSound;
+<<<<<<< HEAD
         this._createAu();
+=======
+        this._createAu()
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
     }
     
     
     _init() {
+<<<<<<< HEAD
         this.clickCard = this._clickCard.bind(this);
         this.resetGame = this._resetGame.bind(this);
         this.retryGame = this._retryGame.bind(this);
+=======
+        this.clickCard = this._clickCard.bind(this)
+        this.resetGame = this._resetGame.bind(this)
+        this.retryGame = this._retryGame.bind(this)
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         this.on('mousedown', this.clickCard);
     }
     
@@ -40,21 +50,30 @@ export class MainGame extends Node {
         this.elm.appendChild(this.corrSound.elm);
 
         this.startSound = new Audio("../audio/shuffling.mp3");
+<<<<<<< HEAD
         this.elm.appendChild(this.startSound.elm);
+=======
+        this.elm.appendChild(this.startSound.elm)
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         
     }
 
     _resetGame(isReset = true) {
         isReset ? this._createImgSrc() : null;
         this._delCard();
+<<<<<<< HEAD
         this.startSound.elm.load()
         this.startSound.elm.play();
+=======
+        this.startSound.elm.play()
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         this._createCards();
         this.scoreStart = 100;
         this.calculatorScore();
         this.checkAmountCard = 20;
         this.btnPlay.active = false;
         this.btnReplay.active = true;
+<<<<<<< HEAD
         this.btnRetry.active = true;
         this.notiLose.active = false;
         this.notiWin.active = false;
@@ -63,10 +82,18 @@ export class MainGame extends Node {
 
     _retryGame() {
         this._resetGame(false);
+=======
+        this.btnRetry.active = true
+    }
+
+    _retryGame() {
+        this._resetGame(false)
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
     }
 
     _delCard() {
         for (let item of this._arrCards) {
+<<<<<<< HEAD
             item.destroy();
         }
     }
@@ -85,6 +112,27 @@ export class MainGame extends Node {
 
         this.btnPlay = new Button("Play", this.resetGame);
         this.elm.appendChild(this.btnPlay.elm);
+=======
+            item.destroy()
+        }
+    }
+    _initBtn() {
+        this.btnRetry = new Button("Retry", this.retryGame)
+        this.elm.appendChild(this.btnRetry.elm)
+        this.btnRetry.posY = 780;
+        this.btnRetry.posX = 100;
+        this.btnRetry.startText.posX = 30;
+        this.btnRetry.active = false
+
+        this.btnReplay = new Button("Replay", this.resetGame)
+        this.elm.appendChild(this.btnReplay.elm)
+        this.btnReplay.posY = 780;
+        this.btnReplay.posX = 400;
+        this.btnReplay.active = false
+
+        this.btnPlay = new Button("Play", this.resetGame)
+        this.elm.appendChild(this.btnPlay.elm)
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         this.btnPlay.posY = 150;
         this.btnPlay.posX = 100;
     }
@@ -102,6 +150,7 @@ export class MainGame extends Node {
         this.currScore.posX = 400;
         this.currScore.posY = 50;
 
+<<<<<<< HEAD
         this.notiWin = new Label("CONGRATULATION!!!", "white", 80)
         this.elm.appendChild(this.notiWin.elm)
         this.notiWin.posx = 300;
@@ -115,11 +164,17 @@ export class MainGame extends Node {
         this.notiLose.active = false;
     }
 
+=======
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
     _createImgSrc() {
         this._srcImgs = []
         for (let i = 0; i < 10; i++) {
             const src = "./img/onepiece" + i + ".png";
+<<<<<<< HEAD
             this._srcImgs.push(src, src);
+=======
+            this._srcImgs.push(src, src)
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         }
         // this._srcImgs.sort(() => Math.random() - 0.5)
     }
@@ -140,6 +195,11 @@ export class MainGame extends Node {
                 card.elm.style.zIndex = 1;
                 card.width = cardWid;
                 card.height = cardHei;
+<<<<<<< HEAD
+=======
+                // card.posY = i * card.height + startPosY;
+                // card.posX = j * card.width + startPosX;
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
                 card.setPosition(centerX, centerY);
                 card._setupCard(cardWid, cardHei);
                 let tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
@@ -157,6 +217,7 @@ export class MainGame extends Node {
     }
 
     calculatorScore() {
+<<<<<<< HEAD
         this.currScore.text = this.scoreStart.toString();
         if (this.checkAmountCard == 0) {
             this.winSound.elm.play();
@@ -191,6 +252,27 @@ export class MainGame extends Node {
         }, 1000)
     }
 
+=======
+        this.currScore.text = this.scoreStart.toString()
+        if (this.checkAmountCard == 0) {
+            setTimeout(() => {
+                this.winSound.elm.play()
+                alert(`Congratulation!!! \nYour score ${this.scoreStart}`)
+
+            }, 300)
+        }
+        if (this.scoreStart == 0) {
+            setTimeout(() => {
+                if (confirm("You LOSE!!!\nWould you want try again")) {
+                    this._retryGame();
+                } else {
+                    this._resetGame();
+                }
+            }, 300)
+        }
+    }
+
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
     _clickCard(event) {
         if (!event) return;
         const card = event.target.parentNode;
@@ -200,8 +282,13 @@ export class MainGame extends Node {
         if (chooseCard.length == 1 && chooseCard[0].childNodes[0].x == card.childNodes[0].x) {
             return;
         }
+<<<<<<< HEAD
         this.clickSound.elm.load();
         this.clickSound.elm.play();
+=======
+        this.clickSound.elm.load()
+        this.clickSound.elm.play()
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         countClick++;
         chooseCard.push(card);
         card.flipOpen();
@@ -216,14 +303,19 @@ export class MainGame extends Node {
         //     }, 2000)
         // }
         if (chooseCard.length === 2) {
+<<<<<<< HEAD
             let tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
                 tl.delay(1)
                     .add(() => this.checkCard());
+=======
+            this.checkCard()
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         }
 
     }
 
     checkCard() {
+<<<<<<< HEAD
         let tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
         if (chooseCard[0].childNodes[0].src === chooseCard[1].childNodes[0].src) {
             this.corrSound.elm.load()
@@ -252,6 +344,31 @@ export class MainGame extends Node {
                     chooseCard = [];
                     countClick = 0;
                 })
+=======
+        if (chooseCard[0].childNodes[0].src === chooseCard[1].childNodes[0].src) {
+            this.corrSound.elm.play()
+            chooseCard[0].corrCard();
+            chooseCard[1].corrCard();
+            setTimeout(() => {
+                this.elm.removeChild(chooseCard[0])
+                this.elm.removeChild(chooseCard[1])
+                this.scoreStart += 10;
+                this.checkAmountCard -= 2
+                this.calculatorScore()
+                chooseCard = []
+                countClick = 0;
+            }, 500)
+        } else {
+            setTimeout(() => {
+                chooseCard[0].flipDown()
+                chooseCard[1].flipDown()
+                this.scoreStart -= 10;
+                this.calculatorScore();
+                chooseCard = []
+                countClick = 0;
+            }, 500)
+
+>>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         }
     }
 
