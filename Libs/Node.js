@@ -18,15 +18,15 @@ export class Node{
     }
     set width(value){
         this._width = value
-        this.elm.style.width = this._width + "px";
+        this.elm.style.width = typeof value === "string" ? this._width :this._width + "px";
     }
 
     get height(){
         return this._height;
     }
     set height(value){
-        this._height = value
-        this.elm.style.height = this._height + "px";
+        this._height = value;
+        this.elm.style.height = typeof value === "string" ? this._height :this._height + "px";
     }
 
     get posX(){
@@ -50,11 +50,16 @@ export class Node{
     }
     set active(value){
         this._active = value;
-        this.elm.style.display = this._active ? "block" : "none";
+        this.elm.style.display = this._active ? "flex" : "none";
     }
 
     on(event, listener){
         this.elm.addEventListener(event, listener);
+    }
+
+    destroy(){
+        if(!this.elm.parentNode) return;
+        this.elm.parentNode.removeChild(this.elm)
     }
     
 }

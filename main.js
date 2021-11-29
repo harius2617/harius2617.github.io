@@ -1,12 +1,15 @@
 import {MainGame} from "./Modules/Game.js"
 import { Sprite } from "./Libs/Sprite.js";
+import { Audio } from "./Libs/Audio.js";
 
-import { Menu } from "./Libs/MenuStart.js";
 const mainGame = new MainGame();
-const bg = new Sprite("./img/bg.gif")
-document.body.appendChild(bg.elm)
-bg.width = 1890;
-bg.height = 1040;
-const menu = new Menu()
-document.body.appendChild(menu.elm)
-document.body.appendChild(mainGame.elm)
+const bg = new Sprite("./img/bg.jpg");
+document.body.appendChild(bg.elm);
+bg.width = 1720;
+bg.height = 980;
+document.body.appendChild(mainGame.elm);
+let theme = new Audio("./audio/shanks-stop-the-war-theme.mp3");
+document.body.appendChild(theme.elm);
+theme.elm.loop = true;
+theme.elm.autoplay = true;
+

@@ -11,7 +11,8 @@ export class Label extends Node {
 
     _initElement(){
         this.elm = document.createElement('div');
-        this.elm.style.position = "absolute"
+        this.elm.style.position = "absolute";
+        this.elm.setAttribute("class", "myLabel")
     }
 
     get text(){
@@ -20,7 +21,7 @@ export class Label extends Node {
 
     set text(value){
         this._text = value;
-        this.elm.innerHTML = this._text.toString()
+        this.elm.innerHTML = this._text.toString();
     }
 
     get color(){
@@ -29,7 +30,7 @@ export class Label extends Node {
 
     set color(value){
         this._color = value;
-        this.elm.style.color = this._color
+        this.elm.style.color = this._color;
     }
 
     get size(){
@@ -38,13 +39,13 @@ export class Label extends Node {
 
     set size(value){
         this._size = value;
-        this.elm.style.fontSize = this._size.toString() + "px"
+        this.elm.style.fontSize = this._size.toString() + "px";
     }
 
 
     createFont(){
-        this.elm.innerHTML = this._text.toString()
-        this.elm.style.fontSize = this._size + "px"
-        this.elm.style.color = this._color
+        this.elm.innerHTML = this._text.toString();
+        this.elm.style.fontSize = this._size + "px";
+        this.elm.style.color = this._color;
     }
 }
