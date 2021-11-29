@@ -57,6 +57,8 @@ export class MainGame extends Node {
         this.startSound.elm.play();
         this._createCards();
         this.scoreStart = 100;
+        this.loserSound.elm.pause();
+        this.winSound.elm.pause()
         this.calculatorScore();
         this.checkAmountCard = 20;
         this.btnPlay.active = false;
@@ -130,6 +132,7 @@ export class MainGame extends Node {
     }
 
     _createCards() {
+        countClick = 2;
         const col = 5;
         const row = 4;
         let index = 0;
@@ -139,7 +142,6 @@ export class MainGame extends Node {
         let centerY = startPosY + cardHei * 1.5;
         for (let i = 0; i < row; i++) {
             for (let j = 0; j < col; j++) {
-                countClick = 2;
                 let card = new Card(this._srcImgs[index], index + 1);
                 this.elm.appendChild(card.elm);
                 this._arrCards.push(card);
