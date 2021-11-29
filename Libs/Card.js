@@ -20,10 +20,7 @@ export class Card extends Node{
 
     _initElement(){
         this.elm = document.createElement('div');
-<<<<<<< HEAD
         this.elm.setAttribute("class", "myCard")
-=======
->>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
         this.elm.style.position = "absolute";
         this.elm.flipOpen = this.flipOpen.bind(this);
         this.elm.flipDown = this.flipDown.bind(this);
@@ -66,12 +63,6 @@ export class Card extends Node{
 
         this._cover.height = this._cover.elm.parentNode.style.height;
         this._cover.width = this._cover.elm.parentNode.style.width;
-<<<<<<< HEAD
-=======
-
-        this._label.posX = wid/2 - 20;
-        this._label.posY = hei/2 - 22;
->>>>>>> eacc73e2c9462096d6e10cbb71053444576b34d4
     }
 
     flipOpen(){
@@ -98,11 +89,6 @@ export class Card extends Node{
     corrCard(){
         let tl = new Animation();
         tl.animCorrCard(this.elm);
-    }
-
-    setPosition(x, y) {
-        this.posX = x;
-        this.posY = y;
     }
 
     setPosition(x, y) {
