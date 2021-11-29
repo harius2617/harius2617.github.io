@@ -21,7 +21,6 @@ export class MainGame extends Node {
         this._createAu();
     }
     
-    
     _init() {
         this.clickCard = this._clickCard.bind(this);
         this.resetGame = this._resetGame.bind(this);
@@ -30,6 +29,9 @@ export class MainGame extends Node {
     }
     
     _createAu(){
+        this.themeSound = new Audio("../audio/shanks-stop-the-war-theme.mp3");
+        this.elm.appendChild(this.themeSound.elm);
+
         this.clickSound = new Audio("../audio/click-sound.mp3");
         this.elm.appendChild(this.clickSound.elm);
         
@@ -42,11 +44,15 @@ export class MainGame extends Node {
         this.startSound = new Audio("../audio/shuffling.mp3");
         this.elm.appendChild(this.startSound.elm);
         
+        this.loserSound = new Audio("../audio/sound-loser.mp3");
+        this.elm.appendChild(this.loserSound.elm);
     }
 
     _resetGame(isReset = true) {
         isReset ? this._createImgSrc() : null;
         this._delCard();
+        this.themeSound.elm.load();
+        this.themeSound.elm.play();
         this.startSound.elm.load()
         this.startSound.elm.play();
         this._createCards();
@@ -58,7 +64,6 @@ export class MainGame extends Node {
         this.btnRetry.active = true;
         this.notiLose.active = false;
         this.notiWin.active = false;
-
     }
 
     _retryGame() {
@@ -159,15 +164,15 @@ export class MainGame extends Node {
     calculatorScore() {
         this.currScore.text = this.scoreStart.toString();
         if (this.checkAmountCard == 0) {
+            this.themeSound.elm.pause();
             this.winSound.elm.play();
             this.notiWin.active = true
         }
         if (this.scoreStart == 0) {
-            this._delCard()
-            setTimeout(() => {
-                this.notiLose.active = true
-                  
-            }, 300);
+            this._delCard();
+            this.themeSound.elm.pause();
+            this.loserSound.elm.play();
+                this.notiLose.active = true;
         }
     }
 
@@ -205,16 +210,7 @@ export class MainGame extends Node {
         countClick++;
         chooseCard.push(card);
         card.flipOpen();
-        // if(chooseCard.length === 1) {
-        //     setTimeout(()=>{
-        //         // this.elm.removeChild(chooseCard[0])
-        //         if(chooseCard.length != 1) return;
-        //         chooseCard[0].flipDown();
-        //         chooseCard = []
-        //         countClick = 0;
 
-        //     }, 2000)
-        // }
         if (chooseCard.length === 2) {
             let tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
                 tl.delay(1)
